@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/PullEnvironmentData/pom.xml" />
+        <option value="$PROJECT_DIR$/study_spark_test2/pom.xml" />
+        <option value="$PROJECT_DIR$/DataClearing/pom.xml" />
+        <option value="$PROJECT_DIR$/PullData/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation2/pom.xml" />
+        <option value="$PROJECT_DIR$/../test/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation3/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation4/IndexCalculation4/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation5/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation6/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculatioin7/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation4/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation7/pom.xml" />
+        <option value="$PROJECT_DIR$/DataClearing/IndexCalculation7/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation8/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation9/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation10/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation11/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation12/pom.xml" />
+        <option value="$PROJECT_DIR$/IndexCalculation13/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/DataClearing/IndexCalculation7/pom.xml" />
+        <option value="$PROJECT_DIR$/te/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
