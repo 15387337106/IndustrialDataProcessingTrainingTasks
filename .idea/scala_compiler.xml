@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="Maven 1" modules="DataClearing,IndexCalculation,IndexCalculation10,IndexCalculation11,IndexCalculation12,IndexCalculation13,IndexCalculation2,IndexCalculation3,IndexCalculation4,IndexCalculation5,IndexCalculation6,IndexCalculation7,IndexCalculation7 (1),IndexCalculation7 (2),IndexCalculation8,IndexCalculation9,IndexCalculatition7,IndustrialDataProcessingTrainingTasks,PullData,study_spark_test,te,test" />
+    <profile name="Maven 1" modules="DataClearing,FeatureEngineering,IndexCalculation,IndexCalculation10,IndexCalculation11,IndexCalculation12,IndexCalculation13,IndexCalculation2,IndexCalculation3,IndexCalculation4,IndexCalculation5,IndexCalculation6,IndexCalculation7,IndexCalculation7 (1),IndexCalculation7 (2),IndexCalculation8,IndexCalculation9,IndexCalculatition7,IndustrialDataProcessingTrainingTasks,PullData,study_spark_test,te,test" />
   </component>
 </project>
