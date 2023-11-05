@@ -43,7 +43,7 @@ object IndexCalculation11 {
         |)
         |""".stripMargin).select("day","first_id","second_id","tertiary_id","first_time","second_time","tertiary_time")
       .toDF().write
-      .mode("append").jdbc("jdbc:clickhouse://localhost:8123/shtd_store","machine_data_total_time_top3",properties)
+      .mode("append").jdbc("jdbc:clickhouse://master:8123/shtd_store","machine_data_total_time_top3",properties)
     //       写入数据类型String 自动变为string 报错
     //      .option("createTableColumnTypes","day String,first_id int,second_id int,tertiary_id int,first_time int,second_time int,tertiary_time int")
     println("gogogo")

@@ -14,10 +14,21 @@ object IndexCalculation12 {
     spark.sql(
       """
         |select
+        |          first(to_date(ChangeStartTime,"yyyy-MM-dd")) start_date,hour(ChangeStartTime) start_hour,
+        |          sum(unix_timestamp(ChangeEndTime)-unix_timestamp(ChangeStartTime)) run_time
+        |      from
+        |          dwd.fact_change_record
+        |      where ChangeStartTime between "2021-10-12 00:00:00" and "2021-10-13 00:00:00" and ChangeRecordState="待机"
+        |      group by start_hour order by start_hour
+        |""".stripMargin).show()
+
+    spark.sql(
+      """
+        |select
         |    start_date,
         |    start_hour,
-        |    run_time-lag(run_time,1,0) over(order by run_time) hour_add_standby,
-        |    sum(run_time) over(order by run_time) day_agg_standby
+        |    run_time hour_add_standby,
+        |    sum(run_time) over(order by start_hour) day_agg_standby
         |from (select
         |          first(to_date(ChangeStartTime,"yyyy-MM-dd")) start_date,hour(ChangeStartTime) start_hour,
         |          sum(unix_timestamp(ChangeEndTime)-unix_timestamp(ChangeStartTime)) run_time
@@ -25,8 +36,9 @@ object IndexCalculation12 {
         |          dwd.fact_change_record
         |      where ChangeStartTime between "2021-10-12 00:00:00" and "2021-10-13 00:00:00" and ChangeRecordState="待机"
         |      group by start_hour)t1
-        |""".stripMargin).write.mode("overwrite")
-      .jdbc("jdbc:mysql://localhost:3306/shtd_industry","accumulate_standby",properties)
+        |""".stripMargin)
+      .write.mode("overwrite")
+      .jdbc("jdbc:mysql://master:3306/shtd_industry","accumulate_standby",properties)
     print("go!go!!!!dqq")
   }
 

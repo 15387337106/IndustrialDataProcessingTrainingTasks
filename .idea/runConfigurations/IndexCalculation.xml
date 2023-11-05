@@ -7,13 +7,13 @@
     <option name="artifactArgs" value="" />
     <option name="artifactPath">
       <FilePath>
-        <option name="path" value="D:\23041\Desktop\IndustrialDataProcessingTrainingTasks\IndexCalculation\target/IndexCalculation-1.0-SNAPSHOT.jar" />
+        <option name="path" value="D:\23041\Desktop\ProvincialSkillsCompetition\IndustrialDataProcessingTrainingTasks\IndexCalculation\target/IndexCalculation-1.0-SNAPSHOT.jar" />
         <option name="type" value="UPLOAD" />
       </FilePath>
     </option>
     <option name="beforeShellScript" value="" />
     <option name="className" value="IndexCalculation" />
-    <option name="clusterManager" value="LOCAL" />
+    <option name="clusterManager" value="YARN" />
     <option name="conf" value="" />
     <option name="deployMode" value="CLUSTER" />
     <option name="driverClassPath">
@@ -70,8 +70,8 @@
       <list />
     </option>
     <option name="shellExecutor" value="/bin/bash" />
-    <option name="sparkHome" value="" />
-    <option name="sparkMonitoringDriverId" value="" />
+    <option name="sparkHome" value="/opt/module/spark" />
+    <option name="sparkMonitoringDriverId" value="Spark@SparkMonitoringConnections@-7418089349488574266" />
     <option name="supervise" value="false" />
     <option name="targetDirectory">
       <FilePath>
@@ -88,6 +88,7 @@
       </FilePath>
     </option>
     <method v="2">
+      <option name="Maven.BeforeRunTask" enabled="true" file="D:\23041\Desktop\ProvincialSkillsCompetition\IndustrialDataProcessingTrainingTasks\IndexCalculation2/pom.xml" goal="clean" />
       <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/IndexCalculation/pom.xml" goal="package" />
       <option name="SftpSparkFileUpload" enabled="false" />
     </method>

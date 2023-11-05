@@ -28,7 +28,7 @@ object IndexCalculation13 {
         |            from
         |                dwd.fact_change_record
         |            where ChangeStartTime between "2021-10-13 00:00:00" and "2021-10-14 00:00:00" and ChangeRecordState="运行"
-        |            group by start_hour sort by start_hour) t1)t1
+        |            group by start_hour sort by start_hour) t1)t2
         |where row_index>2
         |""".stripMargin).write.mode("overwrite")
       .jdbc("jdbc:mysql://localhost:3306/shtd_industry","slide_window_runnning",properties)

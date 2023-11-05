@@ -1,6 +1,8 @@
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.lit
+import org.apache.spark.util.LongAccumulator
 
+import scala.collection.immutable.Seq
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.{Date, Properties}
@@ -13,9 +15,16 @@ object DataHiveToHive {
     val dbList = Array(("environmentdata","fact_environment_data"),("changerecord","fact_change_record")
       ,("basemachine","dim_machine"),("producerecord","fact_produce_record")
       ,("machinedata","fact_machine_data"))
+    val counter = spark.sparkContext.longAccumulator
 
     dbList.foreach(x=>{
+      counter.add(1)
       val df = spark.read.table(s"ods.${x._1}")
+      counter.value.toLong match {
+        case 2L => df.dropDuplicates(Array[String]("changeid", "changemachineid"))
+        case 3L => df.dropDuplicates("basemachineid")
+        case _ => println("不进行去重")
+      }
       df.withColumnRenamed(df.columns.last, "etldate")
         .withColumn("dwd_insert_user", lit("user1"))
         .withColumn("dwd_modify_user", lit("user1"))

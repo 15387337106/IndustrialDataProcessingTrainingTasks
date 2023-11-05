@@ -1,5 +1,5 @@
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{current_date, date_sub, lit}
+import org.apache.spark.sql.functions.{col, current_date, date_sub, lit}
 
 import java.time.LocalDate
 import java.util.Properties
@@ -19,8 +19,8 @@ object BatchPullData {
       df
         .withColumn("partition_date",
 //          df.select(date_sub(current_date(),1).as("yesterday")).col("yesterday")
-          spark.sql("select date_sub(current_date(),1) as yesterday").col("yesterday")
-//          lit(LocalDate.now().minusDays(1).toString)
+//          spark.sql("select date_sub(current_date(),1) as yesterday").col("yesterday")
+          lit(LocalDate.now().minusDays(1).toString)
         )
         .write.partitionBy("partition_date").mode("overwrite").saveAsTable(s"ods.${x.toLowerCase}")
       spark.sql(s"show partitions ods.${x.toLowerCase}").show

@@ -10,7 +10,7 @@ object IndexCalculation5 {
     val spark = SparkSession.builder().appName("index calculation 3").config("spark.sql.storeAssignmentPolicy","LEGACY").enableHiveSupport().getOrCreate()
     val properties = new Properties()
     properties.setProperty("driver", "com.clickhouse.jdbc.ClickHouseDriver")
-    val con = DriverManager.getConnection("jdbc:clickhouse://localhost:8123", properties)
+    val con = DriverManager.getConnection("jdbc:clickhouse://master:8123", properties)
     con.prepareStatement("drop table if exists shtd_industry.machine_produce_timetop2").execute()
     con.prepareStatement(
       """
@@ -34,7 +34,7 @@ object IndexCalculation5 {
         (x.getAs[Int]("produce_machine_id"),x.getAs[Seq[Long]]("time_list").head.toInt,
           x.getAs[Seq[Long]]("time_list").tail.head.toInt)})
       .toDF("machine_id","first_time","second_time")
-      .write.mode("append").jdbc("jdbc:clickhouse://localhost:8123","shtd_industry.machine_produce_timetop2",properties)
+      .write.mode("append").jdbc("jdbc:clickhouse://master:8123","shtd_industry.machine_produce_timetop2",properties)
 
     con.close()
     spark.stop

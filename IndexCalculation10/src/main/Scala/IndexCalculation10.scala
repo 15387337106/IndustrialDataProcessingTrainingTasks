@@ -1,4 +1,5 @@
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.SparkSession
 
 object IndexCalculation10 {
   def main(args: Array[String]): Unit = {
@@ -21,8 +22,29 @@ object IndexCalculation10 {
         |    unix_timestamp(lead(MachineRecordDate) over(partition by substring(MachineRecordDate,0,10),MachineID order by MachineRecordDate))-unix_timestamp(MachineRecordDate) period
         |from
         |    dwd.fact_machine_data
-        |""".stripMargin).createTempView("temp")
-    spark.sql(
+        |""".stripMargin).show(10000)
+//      .createTempView("temp")
+
+//    spark.sql(
+//        """
+//          |select
+//          |machine_id,
+//          |machine_record_date,
+//          |sum(period) filter(where dt is not null) total_time
+//          |from temp
+//          |where MachineRecordState="运行"
+//          |group by machine_record_date,machine_id
+//          |""".stripMargin).createTempView("hahaha")
+//    spark.sql(
+//      """
+//        |select count(*) from hahaha;
+//        |""".stripMargin).show()
+//    spark.sql(
+//      """
+//        |select * from hahaha limit 50;
+//        |""".stripMargin).show()
+//
+        spark.sql(
       """
         |select
         |machine_id,
@@ -45,7 +67,7 @@ object IndexCalculation10 {
       ).write
       .mode("overwrite")
       .saveAsTable("dws.machine_data_total_time")
-    print("----------------------")
+//    print("----------------------")
 
 
 

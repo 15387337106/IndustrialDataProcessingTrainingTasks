@@ -12,7 +12,7 @@ object IndexCalculation7 {
     spark.sql("use dwd")
     val properties = new Properties()
     properties.setProperty("driver", "com.clickhouse.jdbc.ClickHouseDriver")
-    val jdbcUrl = "jdbc:clickhouse://127.0.0.1:8123"
+    val jdbcUrl = "jdbc:clickhouse://master:8123"
     Class.forName("com.clickhouse.jdbc.ClickHouseDriver")
 
     val con = DriverManager.getConnection(jdbcUrl, properties)
