@@ -1,0 +1,92 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="SparkSubmitConfigurationType" factoryName="ClusterSparkJobConfigurationType" show_console_on_std_err="false" show_console_on_std_out="false">
+    <option name="allowRunningInParallel" value="false" />
+    <option name="archives">
+      <list />
+    </option>
+    <option name="artifactArgs" value="" />
+    <option name="artifactPath">
+      <FilePath>
+        <option name="path" value="" />
+        <option name="type" value="CUSTOM" />
+      </FilePath>
+    </option>
+    <option name="beforeShellScript" value="" />
+    <option name="className" value="" />
+    <option name="clusterManager" value="YARN" />
+    <option name="conf" value="" />
+    <option name="deployMode" value="CLUSTER" />
+    <option name="driverClassPath">
+      <list />
+    </option>
+    <option name="driverCores" value="" />
+    <option name="driverJavaOptions" value="" />
+    <option name="driverLibraryPath">
+      <list />
+    </option>
+    <option name="driverMemory" value="" />
+    <option name="envParams" value="" />
+    <option name="excludePackages" value="" />
+    <option name="executorCores" value="" />
+    <option name="executorMemory" value="" />
+    <option name="files">
+      <list />
+    </option>
+    <option name="interactive" value="false" />
+    <option name="jars">
+      <list />
+    </option>
+    <option name="keytab">
+      <FilePath>
+        <option name="path" value="" />
+        <option name="type" value="CUSTOM" />
+      </FilePath>
+    </option>
+    <option name="master" value="local" />
+    <option name="numExecutors" value="" />
+    <option name="packages" value="" />
+    <option name="principal" value="" />
+    <option name="projectPathOnTarget" />
+    <option name="propertiesFile">
+      <FilePath>
+        <option name="path" value="" />
+        <option name="type" value="CUSTOM" />
+      </FilePath>
+    </option>
+    <option name="proxyUser" value="" />
+    <option name="pyFiles">
+      <list />
+    </option>
+    <option name="queue" value="" />
+    <option name="remoteTargetId">
+      <RemoteTargetId>
+        <option name="clusterId" value="d1144b5c-0512-439d-be41-3a551dbcd6a0" />
+        <option name="connectionId" value="ssh" />
+      </RemoteTargetId>
+    </option>
+    <option name="repositories" value="" />
+    <option name="selectedArtifactInfo" />
+    <option name="selectedOptions">
+      <list />
+    </option>
+    <option name="shellExecutor" value="/bin/bash" />
+    <option name="sparkHome" value="/opt/module/spark" />
+    <option name="sparkMonitoringDriverId" value="" />
+    <option name="supervise" value="false" />
+    <option name="targetDirectory">
+      <FilePath>
+        <option name="path" value="/home/IndexCalculation-Task3" />
+        <option name="type" value="SERVER" />
+      </FilePath>
+    </option>
+    <option name="totalExecutorCores" value="" />
+    <option name="verbose" value="false" />
+    <option name="workDirectoryPath">
+      <FilePath>
+        <option name="path" value="" />
+        <option name="type" value="SERVER" />
+      </FilePath>
+    </option>
+    <method v="2" />
+  </configuration>
+</component>
