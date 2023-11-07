@@ -4,7 +4,7 @@
     <data-source source="LOCAL" name="default@192.168.100.101" uuid="e2a44502-b12b-4d31-9fb9-413beb5d43a2">
       <driver-ref>clickhouse</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>ru.yandex.clickhouse.ClickHouseDriver</jdbc-driver>
+      <jdbc-driver>com.clickhouse.jdbc.ClickHouseDriver</jdbc-driver>
       <jdbc-url>jdbc:clickhouse://192.168.100.101:8123/default</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
@@ -13,6 +13,25 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://192.168.100.101:3306/shtd_industry</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Hive Metastore" read-only="true" uuid="68061f72-249f-4581-8d28-74510518e3c2">
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <remarks>Wrapper For Hive Metastore from Big Data Tools plugin</remarks>
+      <jdbc-driver>com.dbschema.ZeppelinSparkJdbcDriver</jdbc-driver>
+      <jdbc-url>Hive Metastore@HiveMetastoreConnections@4737508997331502844</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="forceUseDriverIcon" value="true" />
+        <property name="connectionId" value="Hive Metastore@HiveMetastoreConnections@4737508997331502844" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="@192.168.100.101" uuid="c451701e-ef70-4cfa-817e-954721870aad">
+      <driver-ref>hive</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.apache.hive.jdbc.HiveDriver</jdbc-driver>
+      <jdbc-url>jdbc:hive2://192.168.100.101:10000</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

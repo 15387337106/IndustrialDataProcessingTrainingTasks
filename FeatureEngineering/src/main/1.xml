@@ -1,0 +1,15 @@
+<div>
+    <col ColName="主轴转速">1058</col>
+    <col ColName="主轴倍率">0.23096991834522806</col>
+    <col ColName="主轴负载">91</col>
+    <col ColName="进给倍率">0.2867956986094764</col>
+    <col ColName="进给速度">392</col>
+    <col ColName="PMC程序号">P365</col>
+    <col ColName="循环时间">322</col>
+    <col ColName="运行时间">21545</col>
+    <col ColName="有效轴数">1</col><col ColName="总加工个数">106</col>
+    <col ColName="已使用内存">627</col>
+    <col ColName="未使用内存">493</col>
+    <col ColName="可用程序量">6</col>
+    <col ColName="注册程序量">1</col>
+</div>
