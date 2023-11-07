@@ -108,9 +108,9 @@ select *  from environmentdata limit 5;
 desc environmentdata;
 ```
 
-![image-20231107104957728](C:/Users/23041/AppData/Roaming/Typora/typora-user-images/image-20231107104957728.png)
+![image-20231107104957728](/pic/1.png)
 
-![image-20231107104930134](C:/Users/23041/AppData/Roaming/Typora/typora-user-images/image-20231107104930134.png)
+![image-20231107104930134](/pic/2.png)
 
 创建表dwd.fact_environment_data并创建动态分区
 
