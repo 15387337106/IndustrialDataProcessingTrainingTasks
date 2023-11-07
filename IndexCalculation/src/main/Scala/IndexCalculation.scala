@@ -1,7 +1,6 @@
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{col, date_format, max, min, sum, unix_timestamp}
+import org.apache.spark.sql.functions._
 
-import java.sql.DriverManager
 import java.util.Properties
 
 object IndexCalculation {
@@ -24,23 +23,21 @@ object IndexCalculation {
         .as("duration_time"))
       .withColumn("year",date_format(col("ChangeStartTime"),"yyyy"))
       .withColumn("month",date_format(col("ChangeStartTime"),"MM"))
-//    val con = DriverManager.getConnection(jdbcUrl, "root", "123456")
-//    con.prepareStatement(
-//      """
-//        |create table machine_state_time(
-//        |machine_id int,
-//        |change_record_state varchar(64),
-//        |duration_time varchar(64),
-//        |year int,
-//        |month int)
-//        |""".stripMargin).execute()
-//    con.close()
-
 
     df.select("machine_id","change_record_state","duration_time","year","month")
       .write.mode("append")
       .jdbc(jdbcUrl,"machine_state_time",properties)
-
+    //    val con = DriverManager.getConnection(jdbcUrl, "root", "123456")
+    //    con.prepareStatement(
+    //      """
+    //        |create table machine_state_time(
+    //        |machine_id int,
+    //        |change_record_state varchar(64),
+    //        |duration_time varchar(64),
+    //        |year int,
+    //        |month int)
+    //        |""".stripMargin).execute()
+    //    con.close()
 //      """
 //      SELECT
 //        machine_id,

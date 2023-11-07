@@ -1,27 +1,23 @@
 
-import org.apache.spark
-import org.apache.spark.sql.{Row, SparkSession, functions}
-import org.apache.spark.sql.catalyst.dsl.expressions.{DslExpression, StringToAttributeConversionHelper}
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types.{IntegerType, LongType, StructField, StructType}
 
-import java.util.{Date, Properties}
-import scala.collection.mutable.ListBuffer
+import java.util.Properties
 
 case class MachineFT(machine_id: Int, machine_factory: Int, total_running_time: Int, row_num: Int)
 
 object IndexCalculation2 {
   def main(args: Array[String]): Unit = {
-    
-        val properties = new Properties()
-        properties.setProperty("user","default")
-        properties.setProperty("password","")
-        properties.setProperty("driver","com.clickhouse.jdbc.ClickHouseDriver")
-        properties.setProperty("createTableColumnTypes","machine_id int,machine_factory int,total_running_time int")
-        properties.setProperty("createTableOptions","engine=MergeTree() primary key machine_factory")
-        Class.forName("com.clickhouse.jdbc.ClickHouseDriver")
 
-        val jdbcUrl="jdbc:clickhouse://master:8123/shtd_industry"
+    val properties = new Properties()
+    properties.setProperty("user", "default")
+    properties.setProperty("password", "")
+    properties.setProperty("driver", "com.clickhouse.jdbc.ClickHouseDriver")
+    properties.setProperty("createTableColumnTypes", "machine_id int,machine_factory int,total_running_time int")
+    properties.setProperty("createTableOptions", "engine=MergeTree() primary key machine_factory")
+    Class.forName("com.clickhouse.jdbc.ClickHouseDriver")
+
+    val jdbcUrl = "jdbc:clickhouse://master:8123/shtd_industry"
     val spark = SparkSession.builder().appName("Index Calculation 2").config("spark.sql.storeAssignmentPolicy", "LEGACY").enableHiveSupport().getOrCreate()
     //    spark.read.table("dwd.fact_change_record").show(100000)
     //    spark.read.table("dwd.dim_machine").show
@@ -79,7 +75,8 @@ object IndexCalculation2 {
         |               group by machinefactory,basemachineid)t1)t2
         |where if(cnt%2=0,duration in(cnt/2,cnt/2+1),duration=(cnt+1)/2)
         |""".stripMargin)
-      df.show(100)
+    df.show(100)
+    df.write.mode("append").jdbc(jdbcUrl, "machine_running_median", properties)
 
     //方法二 （只能实现中位数有两个时返回均值）
     //        spark.sql(
@@ -91,33 +88,33 @@ object IndexCalculation2 {
     //          """).show()
 
 
-//    //方法三  todo  跑一边，还没写完
-//    import spark.implicits._
-//    val df2 = spark.table("dwd.dim_machine")
-//    val df1 = spark.table("dwd.fact_change_record")
-//    val fullTable = df1.join(df2, df1.col("ChangeMachineID") === df2.col("BaseMachineID")).filter("ChangeRecordState='运行'")
-//    val result = fullTable
-//      .withColumn("duration_time", unix_timestamp(col("ChangeEndTime")) - unix_timestamp(col("ChangeStartTime")))
-//      .selectExpr("cast(MachineFactory as int)", "cast(ChangeMachineID as int)", "cast(duration_time as int)",
-//        "row_number() over(partition by MachineFactory order by duration_time) as row_num")
-//      .dropDuplicates()
-//      .repartitionByRange(col("MachineFactory"))
-//      .sortWithinPartitions("MachineFactory", "duration_time")
-//      .mapPartitions((x: Iterator[Row]) => {
-//        print(x)
-//        //        val rows = x.map (y=>{
-//        //          println(MachineFT(y.getInt(0), y.getInt(1), y.getInt(2), y.getInt(3)))
-//        //          MachineFT(y.getInt(0), y.getInt(1), y.getInt(2), y.getInt(3))
-//        //        })
-//        val rows = x.filter(y => {
-//          (x.length % 2 == 0 && (y.getInt(3) == x.length / 2 || y.getInt(3) == x.length / 2 + 1)) ||
-//            (x.length % 2 == 1 && y.getInt(3) == x.length / 2 + 1)
-//        })
-//        //        println(rows, "-------------------mappartitions")
-//        rows
-//      })
-//
-//    result.show()
+    //    //方法三  todo  跑一边，还没写完
+    //    import spark.implicits._
+    //    val df2 = spark.table("dwd.dim_machine")
+    //    val df1 = spark.table("dwd.fact_change_record")
+    //    val fullTable = df1.join(df2, df1.col("ChangeMachineID") === df2.col("BaseMachineID")).filter("ChangeRecordState='运行'")
+    //    val result = fullTable
+    //      .withColumn("duration_time", unix_timestamp(col("ChangeEndTime")) - unix_timestamp(col("ChangeStartTime")))
+    //      .selectExpr("cast(MachineFactory as int)", "cast(ChangeMachineID as int)", "cast(duration_time as int)",
+    //        "row_number() over(partition by MachineFactory order by duration_time) as row_num")
+    //      .dropDuplicates()
+    //      .repartitionByRange(col("MachineFactory"))
+    //      .sortWithinPartitions("MachineFactory", "duration_time")
+    //      .mapPartitions((x: Iterator[Row]) => {
+    //        print(x)
+    //        //        val rows = x.map (y=>{
+    //        //          println(MachineFT(y.getInt(0), y.getInt(1), y.getInt(2), y.getInt(3)))
+    //        //          MachineFT(y.getInt(0), y.getInt(1), y.getInt(2), y.getInt(3))
+    //        //        })
+    //        val rows = x.filter(y => {
+    //          (x.length % 2 == 0 && (y.getInt(3) == x.length / 2 || y.getInt(3) == x.length / 2 + 1)) ||
+    //            (x.length % 2 == 1 && y.getInt(3) == x.length / 2 + 1)
+    //        })
+    //        //        println(rows, "-------------------mappartitions")
+    //        rows
+    //      })
+    //
+    //    result.show()
     //      .collect({case x:List[MachineFT]=>x.head})
     //      .toDF("machine_id","machine_factory","total_running_time").show()
 
@@ -131,7 +128,7 @@ object IndexCalculation2 {
     //      StructField("machine_factory", IntegerType, true),
     //      StructField("total_running_time", IntegerType, true)
     //    ))).toDF().show()
-        df.write.mode("append").jdbc(jdbcUrl,"machine_running_median",properties)
+
 
     spark.stop()
   }

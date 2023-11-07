@@ -33,7 +33,7 @@ object IndexCalculation4 {
           |      where ProduceCodeEndTime!='1900-01-01 00:00:00')t1
           |where producetime>produce_per_avgtime
           |""".stripMargin).dropDuplicates(Array("produce_record_id","produce_machine_id"))
-      .write.mode("append").jdbc("jdbc:clickhouse://localhost:8123","shtd_industry.machine_produce_per_avgtime",properties)
+      .write.mode("append").jdbc("jdbc:clickhouse://master:8123","shtd_industry.machine_produce_per_avgtime",properties)
     con.close()
     spark.stop
 

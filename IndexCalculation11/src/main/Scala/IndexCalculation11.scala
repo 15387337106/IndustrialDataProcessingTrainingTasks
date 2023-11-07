@@ -1,4 +1,4 @@
-import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.SparkSession
 
 import java.util.Properties
 
@@ -27,7 +27,6 @@ object IndexCalculation11 {
         |       dense_rank() over(partition by machine_record_date order by total_time desc) rank
         |from
         |dws.machine_data_total_time)t1
-        |where rank<=3 sort by day,rank
         |""".stripMargin).createTempView("t")
     spark.sql("select * from t").show()
     val properties = new Properties()

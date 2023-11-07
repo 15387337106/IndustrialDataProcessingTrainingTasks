@@ -23,6 +23,7 @@
     <module>IndexCalculation11</module>
     <module>IndexCalculation12</module>
     <module>IndexCalculation13</module>
+    <module>AlarmPrediction</module>
   </modules>
 
   <dependencies>

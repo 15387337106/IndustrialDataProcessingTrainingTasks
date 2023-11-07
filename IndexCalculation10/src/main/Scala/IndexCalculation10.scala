@@ -1,5 +1,4 @@
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.SparkSession
 
 object IndexCalculation10 {
   def main(args: Array[String]): Unit = {
@@ -22,8 +21,8 @@ object IndexCalculation10 {
         |    unix_timestamp(lead(MachineRecordDate) over(partition by substring(MachineRecordDate,0,10),MachineID order by MachineRecordDate))-unix_timestamp(MachineRecordDate) period
         |from
         |    dwd.fact_machine_data
-        |""".stripMargin).show(10000)
-//      .createTempView("temp")
+        |""".stripMargin)
+      .createTempView("temp")
 
 //    spark.sql(
 //        """
